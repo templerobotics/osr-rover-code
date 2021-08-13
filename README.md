@@ -1,9 +1,9 @@
 # JPL Open Source Rover Code
 
-This repository contains the code that runs on the Raspberry Pi (RPi) and Arduino to control the 
+This repository contains the code that runs on the Raspberry Pi (RPi) and Arduino to control Temple's  
 [JPL open source rover (osr)](https://github.com/nasa-jpl/open-source-rover).
 This includes the Arduino code that controls the LED matrix.
-The rover runs on ROS1 [and ROS2](https://github.com/nasa-jpl/osr-rover-code/tree/foxy-devel) and its code currently is agnostic of the specific ROS1 distribution 
+The rover runs on ROS1 [and ROS2](https://github.com/templerobotics/osr-rover-code/tree/foxy-devel) and its code currently is agnostic of the specific ROS1 distribution 
 (tested on Kinetic, Melodic, Noetic). All Python code is currently Python2.
 
 **Status**: actively developed. Please refer to the issues tab in GitHub for an overview of ongoing work.
