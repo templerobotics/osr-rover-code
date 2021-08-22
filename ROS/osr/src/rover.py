@@ -33,7 +33,7 @@ class Rover(object):
         self.odometry.header.stamp = rospy.Time.now()
         self.odometry.header.frame_id = "odom"
         self.odometry.child_frame_id = "base_link"
-        self.odometry.pose.pose.orientation.z = 1.
+        self.odometry.pose.pose.orientation.z = 0.
         self.odometry.pose.pose.orientation.w = 1.
         self.curr_twist = TwistWithCovariance()
         self.curr_turning_radius = self.max_radius
@@ -106,11 +106,12 @@ class Rover(object):
             self.odometry.pose.pose.position.x += math.cos(new_angle) * dx
             self.odometry.pose.pose.position.y += math.sin(new_angle) * dx
             self.odometry.pose.covariance = 36 * [0.0,]
+            self.odometry.twist.covariance = 36 * [0.0,]
             # explanation for values at https://www.freedomrobotics.ai/blog/tuning-odometry-for-wheeled-robots
-            self.odometry.pose.covariance[0] = 0.0225
-            self.odometry.pose.covariance[5] = 0.01
-            self.odometry.pose.covariance[-5] = 0.0225
-            self.odometry.pose.covariance[-1] = 0.04
+            self.odometry.twist.covariance[0] = 0.0225
+            self.odometry.twist.covariance[5] = 0.01
+            self.odometry.twist.covariance[-5] = 0.0225
+            self.odometry.twist.covariance[-1] = 0.04
             self.odometry.twist = self.curr_twist
             self.odometry.header.stamp = now
             self.odometry_pub.publish(self.odometry)
@@ -328,7 +329,7 @@ class Rover(object):
             self.curr_twist.twist.angular.z = self.curr_twist.twist.linear.x / self.curr_turning_radius
         except ZeroDivisionError:
             rospy.logwarn_throttle(1, "Current turning radius was calculated as zero which"
-                                   "is an illegal value. Check your wheel calibration."
+                                   "is an illegal value. Check your wheel calibration.")
             self.curr_twist.twist.angular.z = 0.  # turning in place is currently unsupported
 
 
