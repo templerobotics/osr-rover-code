@@ -105,7 +105,7 @@ In the newly created catkin workspace you just made, clone this repo:
 ```commandline
 sudo apt-get install git
 cd ~/osr_ws/src
-git clone https://github.com/nasa-jpl/osr-rover-code.git
+git clone https://github.com/templerobotics/osr-rover-code.git
 
 # install the dependencies
 cd ..
